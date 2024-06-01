@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import useAuth from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -52,13 +52,13 @@ const SignUp = () => {
 
         }
 
-        console.log(data)
+
     }
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <h1 className="text-5xl font-bold text-primary">Register here!</h1>
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -106,8 +106,10 @@ const SignUp = () => {
                             <input type="file" placeholder="You can't touch this" {...register("image", { required: "Image must be required" })} className="file-input file-input-bordered w-full max-w-xs" />
                             {errors.image && <p className='text-red-600'>{errors.image.message}</p>}
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="form-control mt-3 space-y-3">
+
                             <button className="btn btn-primary">Sign Up</button>
+                            <p className='text-lg font-semibold'>Have an account? <Link to="/login" className='link-primary'>Log in</Link></p>
                         </div>
                     </form>
                 </div>
