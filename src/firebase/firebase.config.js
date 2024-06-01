@@ -1,10 +1,10 @@
-require('dotenv').config();
-const apiKEY = process.env.API_KEY || null
-const authDOMAIN = process.env.AUTH_DOMAIN || null
-const projectID = process.env.PROJECT_ID || null
-const storageBUCKET = process.env.STORAGE_BUCKET || null
-const messagingSENDERID = process.env.MESSAGING_SENDER_ID || null
-const appID = process.env.APP_ID || null
+
+const apiKEY = import.meta.env.VITE_API_KEY || null
+const authDOMAIN = import.meta.env.VITE_AUTH_DOMAIN || null
+const projectID = import.meta.env.VITE_PROJECT_ID || null
+const storageBUCKET = import.meta.env.VITE_STORAGE_BUCKET || null
+const messagingSENDERID = import.meta.env.VITE_MESSAGING_SENDER_ID || null
+const appID = import.meta.env.VITE_APP_ID || null
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
