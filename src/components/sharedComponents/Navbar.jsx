@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     console.log(user)
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -30,18 +30,26 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
-                        </div>
-                    </div>
-                    <ul tabIndex={0} className="menu  menu-sm space-y-2 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <span className='text-green-950 bg-green-200 font-bold'> {user?.displayName}</span>
-                        </li>
-                        <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><button className='btn btn-secondary btn-sm'>Logout</button></li>
-                    </ul>
+                    {
+                        user ? <>
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="menu  menu-sm space-y-2 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <span className='text-green-950 bg-green-200 font-bold'> {user?.displayName}</span>
+                                </li>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                <li><button className='btn btn-secondary btn-sm' onClick={() => logOut()}>Logout</button></li>
+                            </ul>
+                        </> : <>
+                            <Link to="/login" className='btn  btn-secondary'>Log in</Link>
+
+                        </>
+                    }
+
                 </div>
             </div>
         </div>

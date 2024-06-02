@@ -6,11 +6,16 @@ import Login from "../pages/Login";
 import Dashboard from "../dashboard/Dashboard";
 import MyCart from "../dashboard/pages/MyCart";
 import AdminHome from "../dashboard/pages/AdminHome";
+import Home from "../pages/Home";
 const routes = createBrowserRouter([
     {
         path: "/",
         element: <CommonLayout></CommonLayout>,
         children: [
+            {
+                index: true,
+                element: <Home />
+            },
             {
                 path: '/signUp',
                 element: <SignUp></SignUp>

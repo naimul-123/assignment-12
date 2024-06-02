@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Cozy Downtown Apartment",
+        "description": "A comfortable and modern apartment located in the heart of downtown. Perfect for urban living with easy access to amenities.",
+        "image": "https://i.ibb.co/hYykYCs/slider-1.jpg"
+    },
+    {
+        "name": "Spacious Family Home",
+        "description": "A large apartment suitable for families, featuring multiple bedrooms, a large kitchen, and a spacious living area.",
+        "image": "https://i.ibb.co/F0PxNBY/slider-2.jpg"
+    },
+    {
+        "name": "Modern Loft",
+        "description": "Stylish loft apartment with an open-plan design, high ceilings, and modern fixtures. Ideal for singles or couples.",
+        "image": "https://i.ibb.co/0C4X6Hw/slider-3.jpg"
+    },
+    {
+        "name": "Luxury Penthouse",
+        "description": "Experience luxury living in this top-floor penthouse with stunning views, high-end finishes, and exclusive amenities.",
+        "image": "https://i.ibb.co/3NVL81h/slider-4.jpg"
+    },
+    {
+        "name": "Urban Studio",
+        "description": "A chic and compact studio apartment, perfect for young professionals or students seeking convenience and style.",
+        "image": "https://i.ibb.co/NmJrtLY/lincoln-2x.webp"
+    },
+    {
+        "name": "Suburban Retreat",
+        "description": "A peaceful and spacious apartment located in a quiet suburban neighborhood, featuring a private garden and ample parking.",
+        "image": "https://i.ibb.co/nMc67V1/slider2-2x.webp"
+    },
+    {
+        "name": "Historic Charm",
+        "description": "A charming apartment with historic features, located in a picturesque area. Enjoy the blend of classic architecture and modern comforts.",
+        "image": "https://i.ibb.co/hLTRW6T/slider3-2x.webp"
+    },
+    {
+        "name": "Eco-Friendly Home",
+        "description": "An environmentally friendly apartment designed with sustainable materials and energy-efficient appliances. Ideal for eco-conscious living.",
+        "image": "https://i.ibb.co/pZ56qN2/slider4-2x.webp"
+    }
+]
