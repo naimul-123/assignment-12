@@ -11,7 +11,7 @@ import Slide from './Slide';
 
 const Banner = () => {
     const axiosPublic = useAxiosPublic()
-    const { data: sliderData } = useQuery({
+    const { data: sliderData = [] } = useQuery({
         queryKey: ['sliderData'],
         queryFn: async () => {
             const res = await axiosPublic.get('/slides')
