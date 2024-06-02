@@ -3,6 +3,9 @@ import App from '../App'
 import CommonLayout from "../layout/CommonLayout";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import Dashboard from "../dashboard/Dashboard";
+import MyCart from "../dashboard/pages/MyCart";
+import AdminHome from "../dashboard/pages/AdminHome";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -17,6 +20,21 @@ const routes = createBrowserRouter([
                 element: <Login></Login>
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'admin',
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: 'mycart',
+                element: <MyCart></MyCart>
+            }
+        ]
+
     }
 ])
 
