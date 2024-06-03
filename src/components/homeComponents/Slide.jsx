@@ -3,7 +3,7 @@ import React from 'react';
 const Slide = ({ slide }) => {
     const { name, image, description } = slide;
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: `url(${image})` }}>
+        <div className="hero min-h-[60vh]" style={{ backgroundImage: `url(${image})` }}>
 
             <div className="hero-content text-center text-white ">
                 <div className="max-w-md">

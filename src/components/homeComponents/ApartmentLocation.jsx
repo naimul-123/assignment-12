@@ -6,12 +6,12 @@ const ApartmentLocation = () => {
     const position = [23.8187465, 90.4492048]
     return (
 
-        <div className='  px-4'>
+        <div className='shadow-lg rounded-lg  p-4'>
             <div className='text-center space-y-2'>
                 <h2 className="text-4xl font-bold text-center my-4  text-green-500 "> Our apartment location</h2>
                 <p>Our apartment location information</p>
             </div>
-            <div className='shadow-lg rounded-lg' >
+            <div className='' >
                 <div className='flex flex-col lg:flex-row gap-6 justify-center items-center  '>
                     <div className='lg:w-1/3 space-y-4 flex flex-col justify-between gap-4 p-8 '>
                         <h2 className='text-center text-2xl font-bold  '>Location</h2>
@@ -22,7 +22,7 @@ const ApartmentLocation = () => {
 
                         </ul>
                     </div>
-                    <div className='w-2/3 mx-auto'>
+                    <div className='w-2/3 mx-auto p-4'>
                         <div>
                             <h2 className='text-2xl text-center font-bold my-5 '>Location in map</h2>
                         </div>
