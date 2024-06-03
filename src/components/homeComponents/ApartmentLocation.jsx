@@ -6,9 +6,9 @@ const ApartmentLocation = () => {
     const position = [23.8187465, 90.4492048]
     return (
 
-        <div className='my-10  px-4'>
-            <div className='text-center space-y-2 my-6'>
-                <h2 className="text-4xl font-bold text-center  text-green-500 "> Our apartment location</h2>
+        <div className='  px-4'>
+            <div className='text-center space-y-2'>
+                <h2 className="text-4xl font-bold text-center my-4  text-green-500 "> Our apartment location</h2>
                 <p>Our apartment location information</p>
             </div>
             <div className='shadow-lg rounded-lg' >
