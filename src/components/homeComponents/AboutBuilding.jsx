@@ -11,7 +11,7 @@ const AboutBuilding = () => {
             <div className='shadow-lg rounded-lg'>
                 <div className='flex flex-col lg:flex-row gap-6 justify-center items-center  '>
                     <div className='lg:w-1/2'>
-                        <img src="/public/image/image (3).webp" className='w-full rounded-t-lg lg:rounded-none lg:rounded-l-lg' alt="" />
+                        <img src="/public/image/image (3).webp" className='w-full rounded-t-lg lg:rounded-none lg:rounded-tl-lg' alt="" />
                     </div>
                     <div className='lg:w-1/2 space-y-4 flex flex-col justify-between gap-4 p-8 '>
                         <h2 className='text-center text-4xl font-bold text-green-500 '>Building Overview</h2>
@@ -27,7 +27,7 @@ const AboutBuilding = () => {
                 </div>
                 <div className='flex flex-col lg:flex-row-reverse gap-6 justify-center items-center  rounded-lg '>
                     <div className='lg:w-1/2'>
-                        <img src="/public/image/image (4).webp" className='w-full rounded-t-lg lg:rounded-none lg:rounded-r-lg' alt="" />
+                        <img src="/public/image/image (4).webp" className='w-full rounded-t-lg lg:rounded-none ' alt="" />
                     </div>
                     <div className='lg:w-1/2 space-y-4 flex flex-col justify-between gap-4 p-8 '>
                         <h2 className='text-center text-4xl font-bold text-green-500 '>Building Amenities</h2>
@@ -43,7 +43,7 @@ const AboutBuilding = () => {
                 </div>
                 <div className='flex flex-col lg:flex-row gap-6 justify-center items-center  rounded-lg '>
                     <div className='lg:w-1/2'>
-                        <img src="/public/image/image (1).webp" className='w-full rounded-t-lg lg:rounded-none lg:rounded-r-lg' alt="" />
+                        <img src="/public/image/image (1).webp" className='w-full rounded-t-lg lg:rounded-none lg:rounded-bl-lg' alt="" />
                     </div>
                     <div className='lg:w-1/2 space-y-4 flex flex-col justify-between gap-4 p-8 '>
                         <h2 className='text-center text-4xl font-bold text-green-500 '>Unit Details</h2>

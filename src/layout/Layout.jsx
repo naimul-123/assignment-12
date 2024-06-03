@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../components/sharedComponents/Navbar';
 import Footer from '../components/sharedComponents/Footer';
 
-const CommonLayout = () => {
+const Layout = () => {
     return (
         <div>
             <Navbar></Navbar>
@@ -13,4 +13,4 @@ const CommonLayout = () => {
     );
 };
 
-export default CommonLayout;
+export default Layout;

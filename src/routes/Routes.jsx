@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from '../App'
-import CommonLayout from "../layout/CommonLayout";
+import CommonLayout from "../layout/Layout";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Dashboard from "../dashboard/Dashboard";
 import MyCart from "../dashboard/pages/MyCart";
 import AdminHome from "../dashboard/pages/AdminHome";
 import Home from "../pages/Home";
+import PrivateRoute from "./PrivateRoute";
+import Layout from "../layout/Layout";
 const routes = createBrowserRouter([
     {
         path: "/",
-        element: <CommonLayout></CommonLayout>,
+        element: <Layout></Layout>,
         children: [
             {
                 index: true,
@@ -28,7 +30,7 @@ const routes = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: 'admin',

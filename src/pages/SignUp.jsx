@@ -5,6 +5,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
@@ -36,16 +37,29 @@ const SignUp = () => {
             if (result.user) {
                 updateUserProfile(data.name, photoUrl)
                     .then(() => {
-                        reset();
-                        Swal.fire({
-
-                            icon: "success",
-                            title: "Your registration has been compleated!",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
                         logOut()
-                        navigate('/login')
+                            .then(() => {
+                                const userInfo = {
+                                    name: data.name,
+                                    email: data.email
+                                }
+                                axiosPublic.post('/users', userInfo)
+                                    .then((res) => {
+                                        if (res.data.insertedId) {
+                                            reset();
+                                            Swal.fire({
+
+                                                icon: "success",
+                                                title: "Your registration has been compleated!",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+
+                                            navigate('/login')
+                                        }
+                                    })
+                            })
+
                     })
 
             }
@@ -56,10 +70,12 @@ const SignUp = () => {
     }
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <Helmet>
+                <title>UrbanNest || Sign Up</title>
+            </Helmet>
+            <div className="hero-content flex-col">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold text-primary">Register here!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h2 className="text-4xl font-bold text-secondary">Sign Up here!</h2>
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)}>

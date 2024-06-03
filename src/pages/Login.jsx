@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
+
     const { signIn, googleSignIn } = useAuth();
     const [isShow, setIsShow] = useState(false)
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const axiosPublic = useAxiosPublic();
     const {
         register,
@@ -31,6 +35,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            navigate(from, { replace: true })
         }
     }
     const handleGoogleSingIn = () => {
@@ -38,24 +43,36 @@ const Login = () => {
             .then((result) => {
                 if (result.user) {
 
-                    reset();
-                    Swal.fire({
+                    const userInfo = {
+                        name: result.user.displayName,
+                        email: result.user.email
+                    }
+                    axiosPublic.post('/users', userInfo)
+                        .then((res) => {
+                            console.log(res.data)
+                            if (res.data.insertedId) {
 
-                        icon: "success",
-                        title: "Log in with google Success!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Log in with google Success!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate(from, { replace: true })
+                            }
+                        })
                 }
             })
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
+            <Helmet>
+                <title>UrbanNest || Login</title>
+            </Helmet>
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
                     <h2 className="text-4xl font-bold text-primary">Log in now!</h2>
-
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)}>

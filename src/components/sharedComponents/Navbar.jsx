@@ -8,6 +8,7 @@ const Navbar = () => {
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/signUp">Sign Up</NavLink></li>
+        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
     </>
 
     return (
@@ -21,7 +22,7 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to="/" className="w-48"><img src="/src/assets/logo.jpeg" className='w-full' alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -37,7 +38,7 @@ const Navbar = () => {
                                     <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                 </div>
                             </div>
-                            <ul tabIndex={0} className="menu  menu-sm space-y-2 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="menu  menu-sm space-y-2 dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
                                     <span className='text-green-950 bg-green-200 font-bold'> {user?.displayName}</span>
                                 </li>
