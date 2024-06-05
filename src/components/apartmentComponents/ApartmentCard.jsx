@@ -1,7 +1,18 @@
 import React from 'react';
+import useAuth from '../../hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Apartment = ({ apartment }) => {
-    const { apartment_image, apartment_no, apartment_type, block_name, floor_no, rent } = apartment
+const ApartmentCard = ({ apartment }) => {
+    const { user } = useAuth()
+    const navigate = useNavigate();
+    const { apartment_image, apartment_no, apartment_type, block_name, floor_no, rent, _id } = apartment;
+    const handleAgreement = (id) => {
+        if (!user) {
+            navigate('/login')
+        }
+        console.log(id)
+    }
+
     return (
         <div className="card  bg-base-100 shadow-xl">
             <figure className='relative'><img src={apartment_image} alt={apartment_type} />
@@ -13,11 +24,11 @@ const Apartment = ({ apartment }) => {
                     Floor: {floor_no} Block: {block_name} Apartment No: {apartment_no}
                 </p>
                 <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Agreement</button>
+                    <Link to={`/apartment/${_id}`} className="btn btn-primary">Agreement</Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Apartment;
+export default ApartmentCard;

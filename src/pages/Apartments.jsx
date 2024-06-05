@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useAxiosPublic from '../hooks/useAxiosPublic';
-import { ref } from 'firebase/database';
-import Apartment from '../components/apartmentComponents/Apartment';
-import { FaAngleLeft } from 'react-icons/fa6';
+
+
+import ApartmentCard from '../components/apartmentComponents/ApartmentCard';
+
+
 
 const Apartments = () => {
+
     const [currentPage, setCurrentPage] = useState(1)
-    // const [totalPage, setTotalPage] = useState(36)
     const axiosPublic = useAxiosPublic();
-    const { data = [], refetch, isLoading, isError, error } = useQuery({
+    const { data = [], isLoading, isError, error } = useQuery({
         queryKey: ['apartments', currentPage],
         queryFn: async () => {
             const res = await axiosPublic.get(`/apartments?page=${currentPage}`)
@@ -18,11 +20,8 @@ const Apartments = () => {
         keepPreviousData: true
 
     })
-    // useEffect(() => {
-    //     refetch();
-    // }, [currentPage, refetch])
 
-    // console.log(data)
+
     if (isLoading && !data) {
         return <div>
             data is loading.....
@@ -34,12 +33,11 @@ const Apartments = () => {
         </div>
     }
     const { apartments, totalPage } = data
-    console.log(apartments)
     return (
         <div className='py-16'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                 {
-                    apartments?.map((apartment) => <Apartment key={apartment._id} apartment={apartment}></Apartment>)
+                    apartments?.map((apartment) => <ApartmentCard key={apartment._id} apartment={apartment}></ApartmentCard>)
                 }
             </div>
             <div className="join grid grid-cols-5 my-10 max-w-sm">

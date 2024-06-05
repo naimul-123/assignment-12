@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import Layout from "../layout/Layout";
 import Apartments from "../pages/Apartments";
+import Apartment from "../pages/Apartment";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -22,6 +23,11 @@ const routes = createBrowserRouter([
             {
                 path: '/apartments',
                 element: <Apartments></Apartments>
+            },
+            {
+                path: '/apartment/:id',
+                element: <PrivateRoute><Apartment></Apartment></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/apartment/${params.id}`)
             },
             {
                 path: '/signUp',
