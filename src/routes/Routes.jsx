@@ -9,6 +9,7 @@ import AdminHome from "../dashboard/pages/AdminHome";
 import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import Layout from "../layout/Layout";
+import Apartments from "../pages/Apartments";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -17,6 +18,10 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
+            },
+            {
+                path: '/apartments',
+                element: <Apartments></Apartments>
             },
             {
                 path: '/signUp',

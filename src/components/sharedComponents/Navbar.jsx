@@ -4,15 +4,25 @@ import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
-    console.log(user)
     const navLinks = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/signUp">Sign Up</NavLink></li>
-        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+        <li><NavLink to="/" className={({ isActive }) =>
+            isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
+        }  >Home</NavLink></li>
+
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
+        } to="/apartments">Apartments</NavLink></li>
+
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
+        } to="/signUp">Sign Up</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
+        } to="/dashboard">Dashboard</NavLink></li>
     </>
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar  fixed z-50 bg-green-100 bg-opacity-80 max-w-screen-xl">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,7 +35,7 @@ const Navbar = () => {
                 <Link to="/" className="w-48"><img src="/src/assets/logo.png" className='w-full' alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 gap-2">
                     {navLinks}
                 </ul>
             </div>
@@ -46,7 +56,7 @@ const Navbar = () => {
                                 <li><button className='btn btn-secondary btn-sm' onClick={() => logOut()}>Logout</button></li>
                             </ul>
                         </> : <>
-                            <Link to="/login" className='btn  btn-secondary'>Log in</Link>
+                            <Link to="/login" className='btn btn-sm btn-secondary'>Log in</Link>
 
                         </>
                     }
