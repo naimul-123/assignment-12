@@ -42,15 +42,16 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 if (result.user) {
-
+                    console.log(result.user)
                     const userInfo = {
                         name: result.user.displayName,
-                        email: result.user.email
+                        email: result.user.email,
+
                     }
                     axiosPublic.post('/users', userInfo)
                         .then((res) => {
                             console.log(res.data)
-                            if (res.data.insertedId) {
+                            if (res.data.upsertedCount || res.data.modifiedCount || res.data.matchedCount) {
 
                                 Swal.fire({
                                     icon: "success",
@@ -59,6 +60,7 @@ const Login = () => {
                                     timer: 1500
                                 });
                                 navigate(from, { replace: true })
+
                             }
                         })
                 }

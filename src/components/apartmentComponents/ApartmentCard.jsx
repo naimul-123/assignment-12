@@ -1,16 +1,46 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const ApartmentCard = ({ apartment }) => {
     const { user } = useAuth()
     const navigate = useNavigate();
     const { apartment_image, apartment_no, apartment_type, block_name, floor_no, rent, _id } = apartment;
-    const handleAgreement = (id) => {
+    const axiosPublic = useAxiosPublic();
+    const handleAgreement = async () => {
         if (!user) {
-            navigate('/login')
+            navigate('/login');
+            return
         }
-        console.log(id)
+
+        const agreementData = {
+            name: user.displayName,
+            email: user.email,
+            floor_no,
+            block_name,
+            apartment_no,
+            rent,
+            status: "pending"
+
+        }
+        const res = await axiosPublic.post('/agreement', agreementData);
+
+        if (res.data.message) {
+            Swal.fire({
+                icon: "error",
+                timer: 1500,
+                text: res.data.message,
+            });
+        }
+        if (res.data.acknowledged && res.data.insertedId) {
+            Swal.fire({
+                icon: "success",
+                timer: 1500,
+                text: "Agreement added successfully",
+            });
+        }
     }
 
     return (
@@ -24,7 +54,7 @@ const ApartmentCard = ({ apartment }) => {
                     Floor: {floor_no} Block: {block_name} Apartment No: {apartment_no}
                 </p>
                 <div className="card-actions justify-center">
-                    <Link to={`/apartment/${_id}`} className="btn btn-primary">Agreement</Link>
+                    <button className="btn btn-primary" onClick={handleAgreement}>Agreement</button>
                 </div>
             </div>
         </div>

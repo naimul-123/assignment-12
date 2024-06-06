@@ -45,7 +45,8 @@ const SignUp = () => {
                                 }
                                 axiosPublic.post('/users', userInfo)
                                     .then((res) => {
-                                        if (res.data.insertedId) {
+                                        console.log(res.data)
+                                        if (res.data.upsertedCount || res.data.modifiedCount || res.data.matchedCount) {
                                             reset();
                                             Swal.fire({
 

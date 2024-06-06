@@ -5,12 +5,16 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Dashboard from "../dashboard/Dashboard";
 import MyCart from "../dashboard/pages/MyCart";
-import AdminHome from "../dashboard/pages/AdminHome";
+import AdminHome from "../dashboard/admin/AdminHome";
 import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import Layout from "../layout/Layout";
 import Apartments from "../pages/Apartments";
 import Apartment from "../pages/Apartment";
+import AdminRoute from "./AdminRoute";
+import ManageAgreements from "../dashboard/admin/ManageAgreements";
+import ManageCupon from "../dashboard/admin/ManageCupon";
+import ManageMember from "../dashboard/admin/ManageMember";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -44,9 +48,23 @@ const routes = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
-                path: 'admin',
-                element: <AdminHome></AdminHome>
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
             },
+            {
+                path: 'manageAgreement',
+                element: <AdminRoute><ManageAgreements></ManageAgreements></AdminRoute>
+            },
+            {
+                path: 'manageCupon',
+                element: <AdminRoute><ManageCupon></ManageCupon></AdminRoute>
+            },
+            {
+                path: 'manageMember',
+                element: <AdminRoute><ManageMember></ManageMember></AdminRoute>
+            },
+
+
             {
                 path: 'mycart',
                 element: <MyCart></MyCart>
