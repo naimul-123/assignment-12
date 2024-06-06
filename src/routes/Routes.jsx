@@ -87,11 +87,11 @@ const routes = createBrowserRouter([
             // user routes
             {
                 path: 'userHome',
-                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+                element: <UserHome></UserHome>
             },
             {
                 path: 'announcement',
-                element: <PrivateRoute><Announcements></Announcements></PrivateRoute>
+                element: <Announcements></Announcements>
             },
         ]
 
