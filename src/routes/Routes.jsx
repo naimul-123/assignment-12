@@ -15,6 +15,12 @@ import AdminRoute from "./AdminRoute";
 import ManageAgreements from "../dashboard/admin/ManageAgreements";
 import ManageCupon from "../dashboard/admin/ManageCupon";
 import ManageMember from "../dashboard/admin/ManageMember";
+import MemberRoute from "./MemberRoute";
+import MakePayment from "../dashboard/member/MakePayment";
+import MemberHome from "../dashboard/member/MemberHome";
+import PaymentHistory from "../dashboard/member/PaymentHistory";
+import UserHome from "../dashboard/user/UserHome";
+import Announcements from "../dashboard/user/Announcements";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -47,6 +53,7 @@ const routes = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            // Admin routes
             {
                 path: 'adminHome',
                 element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
@@ -64,11 +71,28 @@ const routes = createBrowserRouter([
                 element: <AdminRoute><ManageMember></ManageMember></AdminRoute>
             },
 
-
+            // member routes
             {
-                path: 'mycart',
-                element: <MyCart></MyCart>
-            }
+                path: 'memberHome',
+                element: <MemberRoute><MemberHome></MemberHome></MemberRoute>
+            },
+            {
+                path: 'makePayment',
+                element: <MemberRoute><MakePayment></MakePayment></MemberRoute>
+            },
+            {
+                path: 'paymentHistory',
+                element: <MemberRoute><PaymentHistory></PaymentHistory></MemberRoute>
+            },
+            // user routes
+            {
+                path: 'userHome',
+                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+            },
+            {
+                path: 'announcement',
+                element: <PrivateRoute><Announcements></Announcements></PrivateRoute>
+            },
         ]
 
     }
