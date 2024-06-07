@@ -5,7 +5,6 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    console.log(user)
     const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic();
     const googleProvider = new GoogleAuthProvider();
@@ -25,14 +24,14 @@ const AuthProvider = ({ children }) => {
             }
             else {
                 localStorage.removeItem('access-token')
-                setLoading(false)
+                // setLoading(false)
             }
 
         })
         return () => {
             unsubscribe()
         }
-    }, [axiosPublic]);
+    }, []);
 
     const createUser = (email, password) => {
         setLoading(true);

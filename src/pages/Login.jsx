@@ -15,6 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
+
     const axiosPublic = useAxiosPublic();
     const {
         register,
@@ -42,7 +43,7 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 if (result.user) {
-                    console.log(result.user)
+
                     const userInfo = {
                         name: result.user.displayName,
                         email: result.user.email,
@@ -50,7 +51,7 @@ const Login = () => {
                     }
                     axiosPublic.post('/users', userInfo)
                         .then((res) => {
-                            console.log(res.data)
+
                             if (res.data.upsertedCount || res.data.modifiedCount || res.data.matchedCount) {
 
                                 Swal.fire({

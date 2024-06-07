@@ -1,13 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+import SidebarMenu from '../dashboard/SidebarMenu';
 import useAuth from '../hooks/useAuth';
 import useAdmin from '../hooks/useAdmin';
 import useMember from '../hooks/useMember';
 
-const SidebarMenu = () => {
-    const { user, loading } = useAuth();
-    const [isAdmin, isAdminLoading] = useAdmin()
-    const [isMember, isMemberLoading] = useMember();
+const Dashboard = () => {
+    const { user } = useAuth();
+    const [isAdmin] = useAdmin()
+    const [isMember] = useMember();
+    console.log(isAdmin)
+    console.log(isMember)
     const menuItem = <>
         {user && isAdmin && <>
             <li><NavLink to="/dashboard/adminHome">Admin Profile</NavLink></li>
@@ -30,14 +33,16 @@ const SidebarMenu = () => {
 
         <li><NavLink className="bg-green-300" to="/">Home</NavLink></li>
     </>
-
     return (
-        <div className='bg-green-200 w-48 min-h-screen'>
-            <ul className='menu'>
-                {menuItem}
-            </ul>
+        <div className='flex'>
+            <div className='bg-green-200 w-48 min-h-screen'>
+                <ul className='menu'>
+                    {menuItem}
+                </ul>
+            </div>
+            <Outlet></Outlet>
         </div>
     );
 };
 
-export default SidebarMenu;
+export default Dashboard;

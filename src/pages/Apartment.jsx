@@ -19,6 +19,7 @@ const Apartment = () => {
             block_name,
             apartment_no,
             rent,
+            agreementAt: new Date(),
             status: "pending"
 
         }

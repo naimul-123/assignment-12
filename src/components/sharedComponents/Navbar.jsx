@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useAdmin from '../../hooks/useAdmin';
+import useMember from '../../hooks/useMember';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin()
+    const [isMember] = useMember()
     const navLinks = <>
         <li><NavLink to="/" className={({ isActive }) =>
             isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
@@ -13,12 +17,10 @@ const Navbar = () => {
             isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
         } to="/apartments">Apartments</NavLink></li>
 
-        <li><NavLink className={({ isActive }) =>
+        {!user && <li><NavLink className={({ isActive }) =>
             isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
-        } to="/signUp">Sign Up</NavLink></li>
-        <li><NavLink className={({ isActive }) =>
-            isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"
-        } to="/dashboard">Dashboard</NavLink></li>
+        } to="/signUp">Sign Up</NavLink></li>}
+
     </>
 
     return (
@@ -52,7 +54,9 @@ const Navbar = () => {
                                 <li>
                                     <span className='text-green-950 bg-green-200 font-bold'> {user?.displayName}</span>
                                 </li>
-                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                {user && isAdmin && < li > <Link to="/dashboard/adminHome">Dashboard</Link></li>}
+                                {user && isMember && < li > <Link to="/dashboard/memberHome">Dashboard</Link></li>}
+                                {user && !isAdmin && !isMember && < li > <Link to="/dashboard/userHome">Dashboard</Link></li>}
                                 <li><button className='btn btn-secondary btn-sm' onClick={() => logOut()}>Logout</button></li>
                             </ul>
                         </> : <>
@@ -63,7 +67,7 @@ const Navbar = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };

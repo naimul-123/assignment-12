@@ -3,7 +3,7 @@ import App from '../App'
 import CommonLayout from "../layout/Layout";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
-import Dashboard from "../dashboard/Dashboard";
+import Dashboard from "../layout/Dashboard";
 import MyCart from "../dashboard/pages/MyCart";
 import AdminHome from "../dashboard/admin/AdminHome";
 import Home from "../pages/Home";

@@ -21,6 +21,8 @@ const ApartmentCard = ({ apartment }) => {
             floor_no,
             block_name,
             apartment_no,
+            apartment_id: _id,
+            agreementAt: new Date(),
             rent,
             status: "pending"
 
