@@ -9,13 +9,11 @@ const Dashboard = () => {
     const { user } = useAuth();
     const [isAdmin] = useAdmin()
     const [isMember] = useMember();
-    console.log(isAdmin)
-    console.log(isMember)
     const menuItem = <>
         {user && isAdmin && <>
             <li><NavLink to="/dashboard/adminHome">Admin Profile</NavLink></li>
             <li><NavLink to="/dashboard/manageAgreement">Manage Agreement</NavLink></li>
-            <li><NavLink to="/dashboard/manageCupon">Manage Cupon</NavLink></li>
+            <li><NavLink to="/dashboard/manageCupons">Manage Cupon</NavLink></li>
             <li><NavLink to="/dashboard/manageMember">Manage Member</NavLink></li>
         </>}
         {user && isMember && <>

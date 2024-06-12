@@ -13,7 +13,6 @@ import Apartments from "../pages/Apartments";
 import Apartment from "../pages/Apartment";
 import AdminRoute from "./AdminRoute";
 import ManageAgreements from "../dashboard/admin/ManageAgreements";
-import ManageCupon from "../dashboard/admin/ManageCupon";
 import ManageMember from "../dashboard/admin/ManageMember";
 import MemberRoute from "./MemberRoute";
 import MakePayment from "../dashboard/member/MakePayment";
@@ -21,6 +20,7 @@ import MemberHome from "../dashboard/member/MemberHome";
 import PaymentHistory from "../dashboard/member/PaymentHistory";
 import UserHome from "../dashboard/user/UserHome";
 import Announcements from "../dashboard/user/Announcements";
+import ManageCupons from "../dashboard/admin/ManageCupons";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -63,8 +63,8 @@ const routes = createBrowserRouter([
                 element: <AdminRoute><ManageAgreements></ManageAgreements></AdminRoute>
             },
             {
-                path: 'manageCupon',
-                element: <AdminRoute><ManageCupon></ManageCupon></AdminRoute>
+                path: 'manageCupons',
+                element: <AdminRoute><ManageCupons></ManageCupons></AdminRoute>
             },
             {
                 path: 'manageMember',
