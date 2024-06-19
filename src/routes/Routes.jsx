@@ -21,6 +21,7 @@ import PaymentHistory from "../dashboard/member/PaymentHistory";
 import UserHome from "../dashboard/user/UserHome";
 import Announcements from "../dashboard/user/Announcements";
 import ManageCupons from "../dashboard/admin/ManageCupons";
+import Payment from "../dashboard/member/Payment";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -37,7 +38,7 @@ const routes = createBrowserRouter([
             {
                 path: '/apartment/:id',
                 element: <PrivateRoute><Apartment></Apartment></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/apartment/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment12-category-0012-server.vercel.app/apartment/${params.id}`)
             },
             {
                 path: '/signUp',
@@ -79,6 +80,10 @@ const routes = createBrowserRouter([
             {
                 path: 'makePayment',
                 element: <MemberRoute><MakePayment></MakePayment></MemberRoute>
+            },
+            {
+                path: 'payment',
+                element: <MemberRoute><Payment></Payment></MemberRoute>
             },
             {
                 path: 'paymentHistory',

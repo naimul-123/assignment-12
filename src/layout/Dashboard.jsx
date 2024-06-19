@@ -38,7 +38,7 @@ const Dashboard = () => {
                     {menuItem}
                 </ul>
             </div>
-            <Outlet></Outlet>
+            <div className='flex-grow'> <Outlet></Outlet></div>
         </div>
     );
 };
