@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-    baseURL: 'https://assignment12-category-0012-server.vercel.app'
+    baseURL: 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {
@@ -21,12 +21,13 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use((response) => {
         return response;
     }, (err) => {
-        const status = err.response.status;
-        if (status === 401 || status === 403) {
+        console.log(err)
+        // const status = err.response.status;
+        // if (status === 401 || status === 403) {
 
-            // await logOut();
-            // navigate('/login');
-        }
+        //     // await logOut();
+        //     // navigate('/login');
+        // }
         return Promise.reject(err)
     })
     return axiosSecure

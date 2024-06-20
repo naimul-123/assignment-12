@@ -8,7 +8,6 @@ import ApartmentCard from '../components/apartmentComponents/ApartmentCard';
 
 
 const Apartments = () => {
-
     const [currentPage, setCurrentPage] = useState(1)
     const axiosPublic = useAxiosPublic();
     const { data = [], isLoading, isError, error } = useQuery({
@@ -48,7 +47,7 @@ const Apartments = () => {
                 <button className="join-item btn btn-outline bg-green-500 text-white hover:bg-green-400 disabled:bg-green-100" onClick={() => currentPage < totalPage ? setCurrentPage(currentPage + 1) : setCurrentPage(totalPage)}>Next</button>
                 <button className="join-item btn btn-outline bg-green-500 text-white hover:bg-green-400 disabled:bg-green-100" disabled={currentPage >= totalPage} onClick={() => setCurrentPage(totalPage)}>Last</button>
             </div>
-        </div >
+        </div>
     );
 };
 

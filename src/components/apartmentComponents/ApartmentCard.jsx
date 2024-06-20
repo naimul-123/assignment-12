@@ -3,12 +3,14 @@ import useAuth from '../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ApartmentCard = ({ apartment }) => {
     const { user } = useAuth()
     const navigate = useNavigate();
     const { apartment_image, apartment_no, apartment_type, block_name, floor_no, rent, _id } = apartment;
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const handleAgreement = async () => {
         if (!user) {
             navigate('/login');
@@ -27,7 +29,7 @@ const ApartmentCard = ({ apartment }) => {
             status: "pending"
 
         }
-        const res = await axiosPublic.post('/agreement', agreementData);
+        const res = await axiosSecure.post('/agreement', agreementData);
 
         if (res.data.message) {
             Swal.fire({

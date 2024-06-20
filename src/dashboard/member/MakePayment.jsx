@@ -9,8 +9,8 @@ const MakePayment = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
 
-    const { data: agreement, isLoading } = useQuery({
-        queryKey: [user.email, 'agreement'],
+    const { data: agreements, isLoading } = useQuery({
+        queryKey: [user.email, 'agreements'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myagreement/${user?.email}`)
             return res.data
@@ -20,12 +20,10 @@ const MakePayment = () => {
     if (isLoading) {
         return
     }
-
-    console.log(agreement)
     return (
         <div>
-            <div className="card shrink-0 w-full  shadow-2xl bg-base-100">
-                <form className="card-body grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="card shrink-0 w-full   bg-base-100">
+                {agreements.length > 0 ? agreements.map(agreement => <form key={agreement._id} className="card-body grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -59,10 +57,16 @@ const MakePayment = () => {
                         <input type="text" placeholder="Rent" defaultValue={`$${agreement.rent}`} className="input input-bordered" disabled />
                     </div>
                     <div className="form-control mt-6 col-span-full">
-                        <Link to="/dashboard/payment" className="btn btn-primary">Submit/pay</Link>
+                        <Link to={`/dashboard/payment/${agreement._id}`} className="btn btn-primary">Submit/pay</Link>
                     </div>
-                </form>
+                </form>)
+                    :
+                    <div className='card-body'>
+                        <h3 className="text-2xl text-green-500 font-bold">You have no agreement to pay.</h3>
+                    </div>}
             </div>
+
+
         </div>
     );
 };
