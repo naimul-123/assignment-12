@@ -29,14 +29,11 @@ const PaymentHistory = () => {
         );
     }
 
-
-
-    console.log(paymentinfo)
     return (
         <div>
-            <div className="form-control max-w-sm mx-auto my-3">
+            <div className="form-control justify-center items-center max-w-sm mx-auto my-3">
                 <label className="label">
-                    <span className="label-text text-2xl font-semibold">Search by month name</span>
+                    <span className="label-text text-3xl text-green-500 text-center font-bold">Search by month name</span>
                 </label>
                 <div className="input input-bordered flex items-center gap-2">
                     <input type="text" className="grow" placeholder="Search by month name" onChange={(e) => setMonth(e.target.value)} />

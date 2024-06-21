@@ -48,9 +48,9 @@ const Banner = () => {
                 </SwiperSlide>)}
             </Swiper>
 
-            <div className=' flex flex-col lg:flex-row max-w-screen-sm mx-auto bg-gradient-to-r from-green-200 to-green-50'>
+            <div className='flex flex-col md:flex-row justify-center items-center gap-2'>
                 {cupons.map(cupon =>
-                    <div className="card w-96" key={cupon._id}>
+                    <div className="card w-96  bg-gradient-to-r from-green-200 to-green-50" key={cupon._id}>
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-4xl font-bold text-green-500">Up to {cupon.discount}% Off!</h2>
                             <p>Use code:  <span className="font-bold text-lg">{cupon.cupon_code}</span></p>

@@ -40,7 +40,7 @@ const ManageAgreements = () => {
         });
 
     }
-    console.log(agreements)
+
     return (
         <div className="overflow-x-auto">
             <table className="table">

@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAdmin from '../../hooks/useAdmin';
 
 const ApartmentCard = ({ apartment }) => {
     const { user } = useAuth()
+    const [isAdmin] = useAdmin();
     const navigate = useNavigate();
     const { apartment_image, apartment_no, apartment_type, block_name, floor_no, rent, _id } = apartment;
     const axiosPublic = useAxiosPublic();
@@ -58,7 +60,7 @@ const ApartmentCard = ({ apartment }) => {
                     Floor: {floor_no} Block: {block_name} Apartment No: {apartment_no}
                 </p>
                 <div className="card-actions justify-center">
-                    <button className="btn btn-primary" onClick={handleAgreement}>Agreement</button>
+                    <button className="btn btn-primary" disabled={isAdmin} onClick={handleAgreement}>Agreement</button>
                 </div>
             </div>
         </div>

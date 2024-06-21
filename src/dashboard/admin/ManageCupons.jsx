@@ -60,7 +60,6 @@ const ManageCupons = () => {
 
 
     }
-    console.log(cupons)
     return (
         <div>
             <div className="overflow-x-auto">

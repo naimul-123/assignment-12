@@ -79,7 +79,7 @@ const MakeAnnouncement = () => {
             <div className='space-y-2'>
                 {announcements?.map((announcement) =>
                     <div className="card shrink-0 max-w-screen-sm shadow-md bg-stone-200" key={announcement._id}>
-                        <div className='card-body flex-row justify-between  items-center' >
+                        <div className='card-body  lg:flex-row justify-between  items-center' >
                             <div className=''>
                                 <h3 className="text-3xl font-bold">{announcement.title}</h3>
                                 <p className='text-lg'>{announcement.description}</p>

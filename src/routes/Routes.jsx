@@ -39,7 +39,7 @@ const routes = createBrowserRouter([
             {
                 path: '/apartment/:id',
                 element: <PrivateRoute><Apartment></Apartment></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://assignment12-category-0012-server.vercel.app/apartment/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment12-category-0012-server.vercel.app/${params.id}`)
             },
             {
                 path: '/signUp',

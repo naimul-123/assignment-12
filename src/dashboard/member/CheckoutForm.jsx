@@ -31,9 +31,9 @@ const CheckoutForm = ({ id }) => {
     const disCountedRent = rent - discountAmount;
 
     useEffect(() => {
-        setIsApply(false)
-
-        setCuponStatus('')
+        // setIsApply(false)
+        // setDiscount(0)
+        // setCuponStatus('')
         if (disCountedRent > 0) {
             axiosSecure.post('/create-payment-intent', { rent: disCountedRent, billingMonth, id })
                 .then(res => {
@@ -115,7 +115,7 @@ const CheckoutForm = ({ id }) => {
                         timer: 1500
                     });
                     e.target.reset();
-
+                    setCuponStatus('')
                     setIsApply(false)
                     setError('')
                 }
@@ -138,7 +138,7 @@ const CheckoutForm = ({ id }) => {
 
         }
         else {
-            setDiscount(0)
+
         }
 
         e.target.reset();

@@ -1,17 +1,26 @@
-import React from 'react';
+
 import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+
+import useAuth from '../../hooks/useAuth';
 
 const Footer = () => {
+    const { user } = useAuth();
+
+    const navLinks = <>
+        <li><Link to="/" className="link link-info">Home</Link></li>
+
+        <li><Link className="link link-info" to="/apartments">Apartments</Link></li>
+
+        {!user && <li><Link className="link link-info" to="/signUp">Sign Up</Link></li>}
+
+    </>
     return (
 
         <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
-            <nav className="grid grid-flow-col gap-4">
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
-            </nav>
+            <ul className="grid grid-flow-col gap-4">
+                {navLinks}
+            </ul>
             <aside>
                 <Link to="/" className="w-48"><img src="/src/assets/logo.png" className='w-full' alt="" /></Link>
                 <p>UrbanNest BMS. Providing reliable apartment service since 2012</p>

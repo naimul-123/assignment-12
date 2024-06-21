@@ -1,5 +1,3 @@
-import React from 'react';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -8,7 +6,6 @@ import { Link } from 'react-router-dom';
 const MakePayment = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
-
     const { data: agreements, isLoading } = useQuery({
         queryKey: [user.email, 'agreements'],
         queryFn: async () => {
@@ -23,7 +20,7 @@ const MakePayment = () => {
     return (
         <div>
             <div className="card shrink-0 w-full   bg-base-100">
-                {agreements.length > 0 ? agreements.map(agreement => <form key={agreement._id} className="card-body grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {agreements.length > 0 ? agreements.map(agreement => <form key={agreement._id} className=" max-w-screen-md justify-center items-center gap-2 m-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -56,7 +53,7 @@ const MakePayment = () => {
                         </label>
                         <input type="text" placeholder="Rent" defaultValue={`$${agreement.rent}`} className="input input-bordered" disabled />
                     </div>
-                    <div className="form-control mt-6 col-span-full">
+                    <div className="form-control mt-6">
                         <Link to={`/dashboard/payment/${agreement._id}`} className="btn btn-primary">Submit/pay</Link>
                     </div>
                 </form>)
