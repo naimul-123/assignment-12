@@ -8,6 +8,7 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isAdmin] = useAdmin()
     const [isMember] = useMember()
+    // console.log(isAdmin, isMember)
     const navLinks = <>
         <li><NavLink to="/" className={({ isActive }) =>
             isActive ? "bg-green-500 text-white" : "bg-green-100 text-green-500"

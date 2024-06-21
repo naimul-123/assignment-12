@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { useForm } from 'react-hook-form';
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Helmet } from 'react-helmet-async';
 
@@ -15,7 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
-
+    const [error, setError] = useState('')
     const axiosPublic = useAxiosPublic();
     const {
         register,
@@ -25,19 +25,26 @@ const Login = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        const result = await signIn(data.email, data.password);
-        if (result.user) {
 
-            reset();
-            Swal.fire({
+        try {
+            const result = await signIn(data.email, data.password);
 
-                icon: "success",
-                title: "Log in Success!",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate(from, { replace: true })
+            if (result.user) {
+                setError('')
+                reset();
+                Swal.fire({
+
+                    icon: "success",
+                    title: "Log in Success!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from, { replace: true })
+            }
+        } catch (error) {
+            setError('Wrong email or password! Please try again')
         }
+
     }
     const handleGoogleSingIn = () => {
         googleSignIn()
@@ -101,7 +108,9 @@ const Login = () => {
                                     <input type={isShow ? "text" : "password"} placeholder="password" {...register("password", {
                                         required: "Password must be required",
                                     })} />
+                                    <span className='w-4 h-4 opacity-70' onClick={() => setIsShow(!isShow)}> {isShow ? <FaEyeSlash /> : <FaEye />}</span>
                                 </label>
+                                {error && <p className='text-red-600'>{error}</p>}
                             </div>
 
                             <div className="form-control mt-3 space-y-3">
