@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = ({ id }) => {
     const { user } = useAuth();
-    console.log(id)
     const [isApply, setIsApply] = useState(false)
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState('')
-    const [succeeded, setSucceeded] = useState('')
     const [billingMonth, setBillingMonth] = useState('')
     const stripe = useStripe();
     const elements = useElements();
@@ -19,29 +18,21 @@ const CheckoutForm = ({ id }) => {
     const [discount, setDiscount] = useState(0)
     const [cuponStatus, setCuponStatus] = useState('')
 
-    const { data: agreement, isLoading } = useQuery({
-        queryKey: [user.email, 'agreement'],
+    const { data: agreement } = useQuery({
+        queryKey: [user.email, id, 'agreement'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/agreement?id=${id}`)
             return res.data
         }
     })
-    // console.log(agreement)
-    // useEffect(() => {
-    //     axiosSecure.get(`/myagreement/${user?.email}`)
-    //         .then(res => {
-    //             if (res.data.rent) {
-    //                 setRent(res.data.rent)
-    //             }
-    //         })
-    // }, [user, axiosSecure])
+
     const rent = agreement?.rent || 0
     const discountAmount = parseFloat((rent * discount / 100).toFixed(2))
     const disCountedRent = rent - discountAmount;
 
     useEffect(() => {
         setIsApply(false)
-        setSucceeded('')
+
         setCuponStatus('')
         if (disCountedRent > 0) {
             axiosSecure.post('/create-payment-intent', { rent: disCountedRent, billingMonth, id })
@@ -83,11 +74,11 @@ const CheckoutForm = ({ id }) => {
         })
 
         if (error) {
-            console.log('Payment Error', error)
+
             setError(error.message)
         }
         else {
-            console.log('payment method', paymentMethod)
+            // console.log(paymentMethod)
             setError('')
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
@@ -103,10 +94,9 @@ const CheckoutForm = ({ id }) => {
         })
 
         if (confirmError) {
-            console.log(confirmError.message)
+            setError(confirmError.message)
         }
         else {
-            console.log(paymentIntent)
 
             if (paymentIntent.status === "succeeded") {
                 const paymentInfo = {
@@ -117,14 +107,22 @@ const CheckoutForm = ({ id }) => {
                     billingMonth
                 }
                 const res = await axiosSecure.post(`/updatePayment/`, paymentInfo)
-                console.log(res.data)
-                setSucceeded('Payment is succeeded!')
-                e.target.reset();
-                setIsApply(false)
+                if (res.data.modifiedCount) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Your payment has been succeeded",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    e.target.reset();
+
+                    setIsApply(false)
+                    setError('')
+                }
+
+
             }
-            else {
-                setSucceeded('')
-            }
+
         }
 
     }
@@ -132,15 +130,18 @@ const CheckoutForm = ({ id }) => {
     const handleCupon = async (e) => {
         e.preventDefault();
         const cupon_code = e.target.cupon_code.value;
+
         const res = await axiosSecure.get(`/cupon?code=${cupon_code}`)
-        console.log(res.data)
         setCuponStatus(res.data.status)
         if (res.data.status === 'valid') {
             setDiscount(res.data.discount)
+
         }
         else {
             setDiscount(0)
         }
+
+        e.target.reset();
 
     }
 
@@ -208,7 +209,7 @@ const CheckoutForm = ({ id }) => {
                             }}
                         />
                         {error && <p className='text-red-500 font-semibold'>{error}</p>}
-                        {succeeded && <p className='text-green-500 font-semibold'>{succeeded}</p>}
+
                         <div className="form-control my-6" >
                             <button disabled={!stripe || error || !clientSecret} className='btn btn-primary' type="submit">
                                 Pay

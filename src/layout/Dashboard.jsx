@@ -15,6 +15,7 @@ const Dashboard = () => {
             <li><NavLink to="/dashboard/manageAgreement">Manage Agreement</NavLink></li>
             <li><NavLink to="/dashboard/manageCupons">Manage Cupon</NavLink></li>
             <li><NavLink to="/dashboard/manageMember">Manage Member</NavLink></li>
+            <li><NavLink to="/dashboard/makeAnnouncement">Make Announcement</NavLink></li>
         </>}
         {user && isMember && <>
             <li><NavLink to="/dashboard/memberHome">Member Profile</NavLink></li>
@@ -22,8 +23,14 @@ const Dashboard = () => {
             <li><NavLink to="/dashboard/paymentHistory">Payment History</NavLink></li>
 
         </>}
+
+
         {user && !isAdmin && !isMember && <>
             <li><NavLink to="/dashboard/userHome">User Profile</NavLink></li>
+
+        </>}
+        {user && !isAdmin && <>
+
             <li><NavLink to="/dashboard/announcement">Announcements</NavLink></li>
 
         </>}

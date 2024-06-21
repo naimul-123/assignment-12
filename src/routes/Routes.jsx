@@ -22,6 +22,7 @@ import UserHome from "../dashboard/user/UserHome";
 import Announcements from "../dashboard/user/Announcements";
 import ManageCupons from "../dashboard/admin/ManageCupons";
 import Payment from "../dashboard/member/Payment";
+import MakeAnnouncement from "../dashboard/admin/MakeAnnouncement";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -70,6 +71,10 @@ const routes = createBrowserRouter([
             {
                 path: 'manageMember',
                 element: <AdminRoute><ManageMember></ManageMember></AdminRoute>
+            },
+            {
+                path: 'makeAnnouncement',
+                element: <AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>
             },
 
             // member routes
