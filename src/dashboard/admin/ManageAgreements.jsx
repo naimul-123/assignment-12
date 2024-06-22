@@ -40,6 +40,32 @@ const ManageAgreements = () => {
         });
 
     }
+    const handleRejectAgreement = (id, email) => {
+        Swal.fire({
+            title: "Do you want to reject agreement?",
+            text: "You won't be able to revert this!",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Reject!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/rejectagreement?id=${id}&&email=${email}`)
+                console.log(res.data)
+                if (res.data.deletedCount) {
+                    Swal.fire({
+                        title: "Confirmed!",
+                        text: "Agreement rejected.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+
+            }
+        });
+
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -75,7 +101,7 @@ const ManageAgreements = () => {
                         <td>
                             <div className='flex gap-2 flex-col lg:flex-row justify-center items-center'>
                                 <button className='btn btn-primary btn-sm' onClick={() => handleAcceptAgreement(agreement._id, agreement.email)}>Accept</button>
-                                <button className='btn btn-secondary btn-sm'>reject</button>
+                                <button className='btn btn-secondary btn-sm' onClick={() => handleRejectAgreement(agreement._id, agreement.email)}>reject</button>
                             </div>
                         </td>
 

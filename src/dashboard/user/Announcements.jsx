@@ -15,17 +15,17 @@ const Announcements = () => {
     })
     return (
 
-        <div className='space-y-2 m-6 flex flex-col justify-center items-center max-w-screen-sm'>
+        <div className='space-y-2 m-6 flex flex-col  gap-2 justify-center items-center'>
             {announcements?.map((announcement) =>
-                <div className="card shrink-0 max-w-screen-sm shadow-md bg-stone-200" key={announcement._id}>
-                    <div className='card-body flex-row justify-between  items-center' >
-                        <div className=''>
-                            <h3 className="text-3xl font-bold">{announcement.title}</h3>
-                            <p className='text-lg'>{announcement.description}</p>
-                        </div>
 
+                <div role="alert" className="alert alert-info shadow-lg" key={announcement._id}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div>
+                        <h3 className="font-bold text-2xl">{announcement.title}</h3>
+                        <div className="text-lg">{announcement.description}</div>
                     </div>
                 </div>
+
             )}
         </div>
 
