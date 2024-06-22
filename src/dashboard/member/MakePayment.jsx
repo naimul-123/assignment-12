@@ -20,7 +20,7 @@ const MakePayment = () => {
     return (
         <div>
             <div className="card shrink-0 w-full   bg-base-100">
-                {agreements.length > 0 ? agreements.map(agreement => <form key={agreement._id} className=" max-w-screen-md justify-center items-center gap-2 m-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {agreements ? agreements.map(agreement => <form key={agreement._id} className=" max-w-screen-md justify-center items-center gap-2 m-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
